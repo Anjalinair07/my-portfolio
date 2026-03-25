@@ -20,17 +20,19 @@
 }
 
 body {
-  background: var(--background);
+  background: transparent;
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
 }
 
 /* Coding-themed background with animated gradient */
 html {
-  background: linear-gradient(-45deg, #0f172a, #1e293b, #334155, #1e293b, #0f172a);
+  background: radial-gradient(circle at 20% 20%, #1b2a47 0%, #0b1321 60%, #030810 100%);
   background-size: 400% 400%;
   animation: codeGradient 15s ease infinite;
   position: relative;
+  overflow-x: hidden;
 }
 
 html::before {
@@ -40,14 +42,31 @@ html::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: 
-    radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(34, 197, 94, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 40% 20%, rgba(168, 85, 247, 0.08) 0%, transparent 50%);
+  background-image:
+    radial-gradient(circle at 10% 30%, rgba(255, 255, 255, 0.9) 1px, transparent 2px),
+    radial-gradient(circle at 25% 20%, rgba(255, 255, 255, 0.8) 1px, transparent 2px),
+    radial-gradient(circle at 40% 75%, rgba(255, 255, 255, 0.7) 1px, transparent 2px),
+    radial-gradient(circle at 70% 40%, rgba(255, 255, 255, 0.9) 1px, transparent 2px),
+    radial-gradient(circle at 85% 80%, rgba(255, 255, 255, 0.6) 1px, transparent 2px),
+    linear-gradient(180deg, rgba(5, 10, 30, 0.5), rgba(2, 4, 10, 0.8));
+  background-size: 100% 100%;
   pointer-events: none;
   z-index: 0;
-  animation: float 20s ease-in-out infinite;
+  animation: float 22s ease-in-out infinite;
 }
+
+html::after {
+  content: '🛰️';
+  position: fixed;
+  top: 12%;
+  left: 70%;
+  font-size: 3.5rem;
+  opacity: 0.82;
+  transform: translate(-50%, -50%) rotate(-14deg);
+  pointer-events: none;
+  z-index: 0;
+}
+
 
 @keyframes codeGradient {
   0% { background-position: 0% 50%; }
@@ -59,6 +78,201 @@ html::before {
   0%, 100% { transform: translate(0, 0); }
   33% { transform: translate(20px, -20px); }
   66% { transform: translate(-20px, 20px); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes catRunIn {
+  from { left: -220px; transform: translateX(0) scale(0.8); opacity: 0; }
+  to { left: 50%; transform: translateX(-50%) scale(1); opacity: 1; }
+}
+
+@keyframes catRunOut {
+  from { left: 50%; transform: translateX(-50%) scale(1); opacity: 1; }
+  to { left: calc(100% + 220px); transform: translateX(0) scale(0.8); opacity: 0; }
+}
+
+@keyframes catHole {
+  from { transform: translate(-50%, -50%) scale(0.8); opacity: 0.0; }
+  25% { opacity: 0.8; }
+  to { transform: translate(-50%, -50%) scale(4); opacity: 0; }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.7s ease-out;
+}
+
+.rocket-launch-overlay {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at 50% 120%, rgba(32, 38, 79, 0.98), rgba(2, 3, 12, 0.99) 70%);
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  overflow: hidden;
+}
+
+.rocket-launch-overlay .rocket-ship {
+  font-size: 9rem;
+  transform: scale(1); 
+  transition: transform 0.3s ease;
+  z-index: 1001;
+}
+
+.rocket-launch-overlay .rocket-fire {
+  position: absolute;
+  bottom: 24%;
+  width: 18px;
+  height: 140px;
+  background: linear-gradient(180deg, rgba(255, 255, 163, 0.92), rgba(255, 70, 40, 0.85));
+  border-radius: 999px;
+  box-shadow: 0 0 30px rgba(255, 165, 45, 0.95), 0 0 120px rgba(255, 127, 15, 0.6);
+  animation: firePulse 0.22s ease-in-out infinite;
+  z-index: 999;
+}
+
+.rocket-launch-overlay .rocket-countdown {
+  font-size: 6rem;
+  font-weight: 900;
+  position: absolute;
+  top: 10%;
+  letter-spacing: 0.25ch;
+  mix-blend-mode: screen;
+  text-shadow: 0 0 35px rgba(255, 255, 255, 0.87);
+}
+
+.rocket-stage-countdown .rocket-ship {
+  transform: translateY(60px) scale(0.96);
+}
+
+.rocket-stage-launch {
+  animation: blastOff 1.4s ease-out forwards;
+}
+
+@keyframes blastOff {
+  0% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-60px) scale(1.1); }
+  100% { transform: translateY(-260vh) scale(0.8); opacity: 0; }
+}
+
+@keyframes firePulse {
+  0%, 100% { opacity: 0.95; transform: scaleY(1); }
+  50% { opacity: 0.4; transform: scaleY(0.75); }
+}
+
+.rocket-stage-done {
+  opacity: 0;
+}
+
+
+.space-station-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.space-object {
+  position: absolute;
+  font-size: 1.5rem;
+  opacity: 0.65;
+  animation-duration: 12s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.space-object.small {
+  font-size: 1rem;
+  opacity: 0.55;
+  animation-duration: 16s;
+}
+
+.space-object.shuttle {
+  animation-name: orbitShuttle;
+  left: -10%;
+  top: 20%;
+}
+
+.space-object.satellite {
+  animation-name: orbitSatellite;
+  left: 90%;
+  top: 10%;
+}
+
+.space-object.asteroid {
+  animation-name: orbitAsteroid;
+  left: 10%;
+  top: 80%;
+}
+
+.space-object.comet {
+  animation-name: orbitComet;
+  left: 60%;
+  top: 85%;
+}
+
+@keyframes orbitShuttle {
+  0% { transform: translate(0,0) rotate(0deg); }
+  100% { transform: translate(-120vw, 120vh) rotate(360deg); }
+}
+
+@keyframes orbitSatellite {
+  0% { transform: translate(0,0) rotate(0deg); }
+  100% { transform: translate(-130vw, 130vh) rotate(-360deg); }
+}
+
+@keyframes orbitAsteroid {
+  0% { transform: translate(0,0) rotate(0deg); }
+  100% { transform: translate(140vw, -140vh) rotate(360deg); }
+}
+
+@keyframes orbitComet {
+  0% { transform: translate(0,0) rotate(0deg); }
+  100% { transform: translate(-110vw, -110vh) rotate(-360deg); }
+}
+
+.rocket-bubble {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(5, 10, 29, 0.98);
+  color: #fff;
+  border: 1px solid rgba(146, 206, 255, 0.45);
+  border-radius: 14px;
+  padding: 0.75rem 1rem;
+  box-shadow: 0 8px 35px rgba(6, 13, 40, 0.35);
+  max-width: 320px;
+}
+
+.rocket-icon {
+  font-size: 2rem;
+}
+
+.rocket-title {
+  font-weight: 800;
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.rocket-text {
+  margin: 0;
+  opacity: 0.95;
+  font-size: 0.9rem;
 }
 
 body {

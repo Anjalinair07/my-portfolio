@@ -1,3 +1,6 @@
+import RocketPopup from './components/CatPopup';
+import Chatbot from './components/Chatbot';
+
 export default function Home() {
   return (
     <div className="min-h-screen">
@@ -9,14 +12,25 @@ export default function Home() {
             <a href="#about" className="text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition">About</a>
             <a href="#projects" className="text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition">Projects</a>
             <a href="#skills" className="text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition">Skills</a>
+            <a href="#resume" className="text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition">Resume</a>
+            <a href="#certificates" className="text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition">Certificates</a>
             <a href="#contact" className="text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition">Contact</a>
           </div>
         </div>
       </nav>
 
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="space-station-overlay" aria-hidden="true">
+          <div className="space-object shuttle">🚀</div>
+          <div className="space-object satellite">🛸</div>
+          <div className="space-object asteroid">☄️</div>
+          <div className="space-object comet">✨</div>
+          <div className="space-object shuttle small">🚀</div>
+          <div className="space-object satellite small">🛸</div>
+        </div>
+        <RocketPopup />
         {/* Hero Section */}
-        <section className="py-20 sm:py-32">
+        <section className="py-20 sm:py-32 animate-fade-in">
           <div className="space-y-6">
             <h2 className="text-5xl sm:text-6xl font-bold text-black dark:text-white leading-tight">
               Hi, I'm Anjali Nair
@@ -43,10 +57,10 @@ export default function Home() {
         </section>
 
         {/* About Section */}
-        <section id="about" className="py-20 border-t border-gray-200 dark:border-gray-800">
+        <section id="about" className="py-20 border-t border-gray-200 dark:border-gray-800 animate-fade-in">
           <h3 className="text-3xl font-bold text-black dark:text-white mb-8">About Me</h3>
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="space-y-4 text-gray-700 dark:text-gray-300">
+            <div className="space-y-4 text-gray-700 dark:text-gray-300 animate-slide-up">
               <p>
                 I'm a budding full-stack developer with a passion for creating intuitive and elegant digital solutions. 
                 With expertise in modern web technologies, I bring both technical excellence and creative vision to every project.
@@ -55,8 +69,14 @@ export default function Home() {
                 When I'm not coding, you will find me exploring new technologies, contributing to open-source projects, 
                 or sharing knowledge with the developer community.
               </p>
+              <div className="mt-6 p-5 bg-gray-50 dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700">
+                <h4 className="text-2xl font-semibold text-black dark:text-white mb-3">More About Me</h4>
+                <p className="text-gray-700 dark:text-gray-300 mb-2">• Currently working as a shift manager at McDonald's.</p>
+                <p className="text-gray-700 dark:text-gray-300 mb-2">• Also working as a casual bartender at Liverpool Football Club.</p>
+                <p className="text-gray-700 dark:text-gray-300">• Proudly serving as an Army Cadet Force volunteer.</p>
+              </div>
             </div>
-            <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-6">
+            <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-6 animate-slide-up">
               <h4 className="font-semibold text-black dark:text-white mb-4">Quick Facts</h4>
               <ul className="space-y-2 text-gray-700 dark:text-gray-300">
                 <li>✨ <span className="font-semibold">Experience:</span> 2+ years in web development</li>
@@ -176,6 +196,201 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Resume Section */}
+        <section id="resume" className="py-20 border-t border-gray-200 dark:border-gray-800 animate-fade-in">
+          <h3 className="text-3xl font-bold text-black dark:text-white mb-8">Resume</h3>
+          <div className="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
+            <p className="text-gray-600 dark:text-gray-400 mb-4">
+              Download my full resume to learn more about my experience and qualifications.
+            </p>
+            <a 
+              href="/resume.pdf"
+              download
+              className="inline-flex items-center px-6 py-3 bg-black dark:bg-white text-white dark:text-black rounded-lg font-semibold hover:bg-gray-800 dark:hover:bg-gray-200 transition"
+            >
+              Download Resume
+            </a>
+          </div>
+        </section>
+
+        {/* Certificates Section */}
+        <section id="certificates" className="py-20 border-t border-gray-200 dark:border-gray-800 animate-fade-in">
+          <h3 className="text-3xl font-bold text-black dark:text-white mb-8">Certificates</h3>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* Certificate 1 */}
+            <div className="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700 hover:shadow-lg transition">
+              <a href="/cert1.jpg" target="_blank" rel="noopener noreferrer" className="block" aria-label="Open CyberFirst Advanced certificate in new tab">
+                <img
+                  src="/cert1.jpg"
+                  alt="CyberFirst Advanced"
+                  className="w-full h-48 object-contain rounded-lg mb-4 cursor-pointer"
+                />
+              </a>
+              <h4 className="text-xl font-bold text-black dark:text-white mb-2">CyberFirst Advanced</h4>
+              <p className="text-gray-600 dark:text-gray-400 mb-4">
+                Advanced cybersecurity training focused on secure development and threat mitigation.
+              </p>
+              <span className="px-3 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-sm rounded">Issued: 2025</span>
+            </div>
+
+            {/* Certificate 2 */}
+            <div className="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700 hover:shadow-lg transition">
+              <a href="/cert2.jpg" target="_blank" rel="noopener noreferrer" className="block" aria-label="Open First Aid at Work certificate in new tab">
+                <img
+                  src="/cert2.jpg"
+                  alt="First Aid at Work"
+                  className="w-full h-48 object-contain rounded-lg mb-4 cursor-pointer"
+                />
+              </a>
+              <h4 className="text-xl font-bold text-black dark:text-white mb-2">First Aid at Work</h4>
+              <p className="text-gray-600 dark:text-gray-400 mb-4">
+                Certification in first aid emergency care and workplace safety.
+              </p>
+              <span className="px-3 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-sm rounded">Issued: 2025</span>
+            </div>
+
+            {/* Certificate 3 */}
+            <div className="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700 hover:shadow-lg transition">
+              <a href="/cert3.jpg" target="_blank" rel="noopener noreferrer" className="block" aria-label="Open 5K Inflatable Run certificate in new tab">
+                <img
+                  src="/cert3.jpg"
+                  alt="5K Inflatable Run"
+                  className="w-full h-48 object-contain rounded-lg mb-4 cursor-pointer"
+                />
+              </a>
+              <h4 className="text-xl font-bold text-black dark:text-white mb-2">5K Inflatable Run</h4>
+              <p className="text-gray-600 dark:text-gray-400 mb-4">
+                Completed the 5K inflatable run challenge demonstrating endurance and team spirit.
+              </p>
+              <span className="px-3 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-sm rounded">Issued: 2025</span>
+            </div>
+
+            {/* Certificate 4 */}
+            <div className="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700 hover:shadow-lg transition">
+              <a href="/cert4.jpg" target="_blank" rel="noopener noreferrer" className="block" aria-label="Open V Code 2025 certificate in new tab">
+                <img
+                  src="/cert4.jpg"
+                  alt="V Code 2025"
+                  className="w-full h-48 object-contain rounded-lg mb-4 cursor-pointer"
+                />
+              </a>
+              <h4 className="text-xl font-bold text-black dark:text-white mb-2">V Code 2025</h4>
+              <p className="text-gray-600 dark:text-gray-400 mb-4">
+                Participation in V Code 2025 with hands-on coding and problem-solving workshops.
+              </p>
+              <span className="px-3 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-sm rounded">Issued: 2025</span>
+            </div>
+
+            {/* Certificate 5 */}
+            <div className="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700 hover:shadow-lg transition">
+              <a href="/cert5.jpg" target="_blank" rel="noopener noreferrer" className="block" aria-label="Open Advancing Your Leadership Course certificate in new tab">
+                <img
+                  src="/cert5.jpg"
+                  alt="Advancing Your Leadership"
+                  className="w-full h-48 object-contain rounded-lg mb-4 cursor-pointer"
+                />
+              </a>
+              <h4 className="text-xl font-bold text-black dark:text-white mb-2">Advancing Your Leadership Course</h4>
+              <p className="text-gray-600 dark:text-gray-400 mb-4">
+                Leadership development course focusing on decision-making and team management.
+              </p>
+              <span className="px-3 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-sm rounded">Issued: 2026</span>
+            </div>
+
+            {/* Certificate 6 */}
+            <div className="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700 hover:shadow-lg transition">
+              <a href="/cert6.jpg" target="_blank" rel="noopener noreferrer" className="block" aria-label="Open Bronze Navigator Award certificate in new tab">
+                <img
+                  src="/cert6.jpg"
+                  alt="Bronze Navigator Award"
+                  className="w-full h-48 object-contain rounded-lg mb-4 cursor-pointer"
+                />
+              </a>
+              <h4 className="text-xl font-bold text-black dark:text-white mb-2">Bronze Navigator Award</h4>
+              <p className="text-gray-600 dark:text-gray-400 mb-4">
+                Recognized for achievement and navigation skills in practical outdoor scenarios.
+              </p>
+              <span className="px-3 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-sm rounded">Issued: 2026</span>
+            </div>
+          </div>
+        </section>
+
+        {/* Expertise Section */}
+        <section id="expertise" className="py-20 border-t border-gray-200 dark:border-gray-800 animate-fade-in">
+          <h3 className="text-3xl font-bold text-black dark:text-white mb-8">Additional Expertise</h3>
+          <div className="space-y-6">
+            <div className="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
+              <h4 className="font-bold text-lg text-black dark:text-white mb-4">AI & Machine Learning</h4>
+              <p className="text-gray-600 dark:text-gray-400 mb-4">
+                Specialized in developing AI-powered applications, including natural language processing, computer vision, and predictive analytics.
+              </p>
+              <ul className="space-y-2 text-gray-600 dark:text-gray-400">
+                <li>• TensorFlow & PyTorch</li>
+                <li>• NLP with Hugging Face</li>
+                <li>• Computer Vision</li>
+                <li>• Model Deployment</li>
+              </ul>
+            </div>
+
+            <div className="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
+              <h4 className="font-bold text-lg text-black dark:text-white mb-4">UI/UX Design</h4>
+              <p className="text-gray-600 dark:text-gray-400 mb-4">
+                Creating user-centered designs with a focus on accessibility, usability, and modern design principles.
+              </p>
+              <ul className="space-y-2 text-gray-600 dark:text-gray-400">
+                <li>• Figma & Adobe XD</li>
+                <li>• User Research</li>
+                <li>• Prototyping</li>
+                <li>• Design Systems</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        {/* Achievements Section */}
+        <section id="achievements" className="py-20 border-t border-gray-200 dark:border-gray-800 animate-fade-in">
+          <h3 className="text-3xl font-bold text-black dark:text-white mb-8">Achievements</h3>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700 hover:shadow-lg transition">
+              <h4 className="text-xl font-bold text-black dark:text-white mb-3">Community Impact</h4>
+              <p className="text-gray-600 dark:text-gray-400">
+                Volunteered as an Army Cadet Force member, delivering training and mentorship that improved cadet retention and discipline.
+              </p>
+            </div>
+            <div className="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700 hover:shadow-lg transition">
+              <h4 className="text-xl font-bold text-black dark:text-white mb-3">Leadership in Sports Events</h4>
+              <p className="text-gray-600 dark:text-gray-400">
+                Organized and completed major events like the 5K Inflatable Run, contributing to teamwork and logistics success.
+              </p>
+            </div>
+            <div className="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700 hover:shadow-lg transition">
+              <h4 className="text-xl font-bold text-black dark:text-white mb-3">International Karate Black Belt</h4>
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-full bg-indigo-100 dark:bg-indigo-900 flex items-center justify-center text-2xl">
+                  🥋
+                </div>
+                <p className="text-gray-600 dark:text-gray-400">
+                  International karate black belt holder, showcasing discipline, focus, and commitment to excellence both on and off the mat.
+                </p>
+              </div>
+            </div>
+
+            <div className="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700 hover:shadow-lg transition">
+              <h4 className="text-xl font-bold text-black dark:text-white mb-3">Top Student Medal – CyberFirst Defenders</h4>
+              <p className="text-gray-600 dark:text-gray-400">
+                Awarded Top Student Medal in the CyberFirst Defenders course for demonstrating best security analysis and problem-solving across the cohort.
+              </p>
+            </div>
+
+            <div className="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700 hover:shadow-lg transition">
+              <h4 className="text-xl font-bold text-black dark:text-white mb-3">Bronze Navigator Awardee</h4>
+              <p className="text-gray-600 dark:text-gray-400">
+                Bronze Navigator Award recognition for outstanding navigation precision and leadership in practical outdoor challenges.
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* Contact Section */}
         <section id="contact" className="py-20 border-t border-gray-200 dark:border-gray-800">
           <div className="bg-black dark:bg-white text-white dark:text-black rounded-lg p-8 sm:p-12">
@@ -211,6 +426,8 @@ export default function Home() {
           <p>© 2026 Anjal. All rights reserved.</p>
         </footer>
       </main>
+
+      <Chatbot />
     </div>
   );
 }
